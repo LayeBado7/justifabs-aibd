@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=JustifAbs AIBD SA
+      - SECRET_KEY=remplacez-cette-cle
+      - DATABASE_URL=sqlite:///./data/aibd_absences.db
+      - UPLOAD_DIR=./uploads
+      - MAX_UPLOAD_MB=10
+      - ALLOWED_EXTENSIONS=pdf,jpg,jpeg,png,doc,docx
+      - COOKIE_SECURE=false
+    volumes:
+      - app_data:/app/data
+      - app_uploads:/app/uploads
+volumes:
+  app_data:
+  app_uploads:
