@@ -1,0 +1,21 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: JustifAbs AIBD SA
+      SECRET_KEY: local-development-secret-change-me
+      DATABASE_URL: sqlite:////app/data/aibd_absences.db
+      UPLOAD_DIR: /app/data/uploads
+      MAX_UPLOAD_MB: "10"
+      ALLOWED_EXTENSIONS: pdf,jpg,jpeg,png,doc,docx
+      COOKIE_SECURE: "false"
+      BOOTSTRAP_ADMIN_EMAIL: admin@aibd.local
+      BOOTSTRAP_ADMIN_PASSWORD: ChangeThisPassword123!
+      BOOTSTRAP_ADMIN_NAME: Administrateur local
+      BOOTSTRAP_ADMIN_MATRICULE: ADMIN001
+    volumes:
+      - app_data:/app/data
+volumes:
+  app_data:

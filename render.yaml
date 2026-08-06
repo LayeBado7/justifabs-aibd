@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: justifabs-aibd
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: APP_NAME
+        value: JustifAbs AIBD SA
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:////app/data/aibd_absences.db
+      - key: UPLOAD_DIR
+        value: /app/data/uploads
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: MAX_UPLOAD_MB
+        value: "10"
+      - key: BOOTSTRAP_ADMIN_EMAIL
+        sync: false
+      - key: BOOTSTRAP_ADMIN_PASSWORD
+        sync: false
+      - key: BOOTSTRAP_ADMIN_NAME
+        value: Administrateur AIBD SA
+      - key: BOOTSTRAP_ADMIN_MATRICULE
+        value: ADMIN001
+    disk:
+      name: justifabs-data
+      mountPath: /app/data
+      sizeGB: 1
